@@ -27,14 +27,14 @@ end
 
 if node['cloud']
   if node['cloud']['private_ips']
-    node['cloud']['private_ips'].each_with_index do |private_ip, index|
-      machine_tag "server:private_ip_#{index}=#{private_ip}" if private_ip
+    node['cloud']['private_ips'].compact.each_with_index do |private_ip, index|
+      machine_tag "server:private_ip_#{index}=#{private_ip}"
     end
   end
 
   if node['cloud']['public_ips']
-    node['cloud']['public_ips'].each_with_index do |public_ip, index|
-      machine_tag "server:public_ip_#{index}=#{public_ip}" if public_ip
+    node['cloud']['public_ips'].compact.each_with_index do |public_ip, index|
+      machine_tag "server:public_ip_#{index}=#{public_ip}"
     end
   end
 end
