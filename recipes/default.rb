@@ -16,3 +16,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+marker "recipe_start_rightscale" do
+  template "rightscale_audit_entry.erb"
+end
+
+if node['rightscale'] && node['rightscale']['instance_uuid']
+  machine_tag "server:uuid=#{node['rightscale']['instance_uuid']}"
+end
+
+if node['cloud']
+  if node['cloud']['private_ips']
+    node['cloud']['private_ips'].each_with_index do |private_ip, index|
+      machine_tag "server:private_ip_#{index}=#{private_ip}" if private_ip
+    end
+  end
+
+  if node['cloud']['public_ips']
+    node['cloud']['public_ips'].each_with_index do |public_ip, index|
+      machine_tag "server:public_ip_#{index}=#{public_ip}" if public_ip
+    end
+  end
+end
