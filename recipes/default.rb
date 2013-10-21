@@ -26,15 +26,15 @@ if node['rightscale'] && node['rightscale']['instance_uuid']
 end
 
 if node['cloud']
-  if node['cloud']['private_ips']
-    node['cloud']['private_ips'].reject { |ip| ip.nil? || ip.empty? }.each_with_index do |private_ip, index|
-      machine_tag "server:private_ip_#{index}=#{private_ip}"
-    end
-  end
-
   if node['cloud']['public_ips']
     node['cloud']['public_ips'].reject { |ip| ip.nil? || ip.empty? }.each_with_index do |public_ip, index|
       machine_tag "server:public_ip_#{index}=#{public_ip}"
+    end
+  end
+
+  if node['cloud']['private_ips']
+    node['cloud']['private_ips'].reject { |ip| ip.nil? || ip.empty? }.each_with_index do |private_ip, index|
+      machine_tag "server:private_ip_#{index}=#{private_ip}"
     end
   end
 end
