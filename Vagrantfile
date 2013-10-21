@@ -81,7 +81,19 @@ Vagrant.configure("2") do |config|
       },
       :rightscale => {
         :instance_uuid => '01-ABCDEFG123456'
-      }
+      },
+      :cloud => {
+        :public_ips => [
+          nil,
+          '',
+          '33.33.33.10',
+        ],
+        :private_ips => [
+          nil,
+          '',
+          '10.0.2.15',
+        ],
+      },
     }
 
     chef.run_list = [

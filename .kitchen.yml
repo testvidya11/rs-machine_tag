@@ -24,4 +24,15 @@ platforms:
 suites:
 - name: default
   run_list: ["recipe[rs-machine_tag]"]
-  attributes: {}
+  attributes:
+    rightscale:
+      instance_uuid: "01-ABCDEFG123456"
+    cloud:
+      public_ips:
+      - null
+      - ""
+      - 33.33.33.10
+      private_ips:
+      - null
+      - ""
+      - 10.0.2.15
