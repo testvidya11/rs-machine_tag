@@ -1,10 +1,8 @@
 ---
 driver_plugin: vagrant
-driver_config:
-  require_chef_omnibus: true
-  use_vagrant_provision: true
-  use_vagrant_berkshelf_plugin: true
-  use_vagrant_bindler_plugin: true
+
+provisioner:
+  name: chef_solo
 
 platforms:
 - name: ubuntu-12.04
@@ -26,11 +24,13 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[rs-machine_tag]"]
+  run_list:
+  - recipe[rs-machine_tag]
   attributes:
     rightscale:
       instance_uuid: "01-ABCDEFG123456"
     cloud:
+      provider: vagrant
       public_ips:
       - null
       - ""
