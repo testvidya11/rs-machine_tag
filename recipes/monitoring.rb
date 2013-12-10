@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rs-machine_tag
-# Recipe:: default
+# Recipe:: monitoring
 #
 # Copyright (C) 2013 RightScale, Inc.
 # 
@@ -23,20 +23,4 @@ end
 
 include_recipe 'machine_tag'
 
-if node['rightscale'] && node['rightscale']['instance_uuid']
-  machine_tag "server:uuid=#{node['rightscale']['instance_uuid']}"
-end
-
-if node['cloud']
-  if node['cloud']['public_ips']
-    node['cloud']['public_ips'].reject { |ip| ip.nil? || ip.empty? }.each_with_index do |public_ip, index|
-      machine_tag "server:public_ip_#{index}=#{public_ip}"
-    end
-  end
-
-  if node['cloud']['private_ips']
-    node['cloud']['private_ips'].reject { |ip| ip.nil? || ip.empty? }.each_with_index do |private_ip, index|
-      machine_tag "server:private_ip_#{index}=#{private_ip}"
-    end
-  end
-end
+machine_tag 'rs_monitoring:state=active'
