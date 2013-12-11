@@ -21,7 +21,7 @@ suites:
   - recipe[rs-machine_tag::monitoring]
   attributes:
     rightscale:
-      instance_uuid: "01-ABCDEFG123456"
+      instance_uuid: 01-ABCDEFG123456
     cloud:
       provider: vagrant
       public_ips:
