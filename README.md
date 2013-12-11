@@ -8,6 +8,11 @@ in RightScale. It builds on the resources and library methods in the
 specifically with RightScale. In the future it will include support for defining
 a 3-tier web application architecture on RightScale with machine tags.
 
+For information about some of the machine tags used by this cookbook, see [List
+of RightScale Tags].
+
+[List of RightScale Tags]: http://support.rightscale.com/15-References/Machine_Tags/List_of_RightScale_Tags
+
 # Requirements
 
 * Chef 11 or above
@@ -20,7 +25,7 @@ a 3-tier web application architecture on RightScale with machine tags.
 # Usage
 
 On a RightScale server, add `rs-machine_tag::default` to the run list. This will
-use the `node['rightscale']['instance_uuid']` variable to create the
+use the `node['rightscale']['instance_uuid']` attribute to create the
 `server:uuid` tag and the `node['cloud']['public_ips']` and
 `node['cloud']['private_ips']`values  that come from the Ohai cloud plugin to
 pupulate the `server:public_ip_X` and `server:private_ip_X` tags (where `X` is 
